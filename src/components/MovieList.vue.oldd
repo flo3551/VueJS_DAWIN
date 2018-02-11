@@ -1,0 +1,52 @@
+<template>
+  <div class="container">
+
+  <p> Vous êtes sur la page des liste de films ! </p>
+  <p> Id du film : {{ $route.params.id }} </p>
+      <ul>
+        <li v-model="created">
+          <router-link :to="{ name:'Movie', params:{ id: movie.id }}">{{movie.titre}}</router-link>
+        </li>
+      </ul>
+  </div>
+</template>
+
+
+
+<script>
+  export default {
+     data() {
+        return {
+          lesFilm: []
+        }
+    },
+    computed: {
+
+      created() {
+          axios.get('http://localhost:8080/')
+          .then(response => {
+            // JSON responses are automatically parsed.
+            return response.data;
+          })
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>

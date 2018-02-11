@@ -1,0 +1,52 @@
+var http = require('http');
+var url = require('url');
+
+var lesFilms =  [
+    	{
+    		id:0,
+    		titre: 'Le Dictateur',
+    		annee: 1940,
+    		langue: 'Anglais',
+    		realisateurNom: 'Charlie Chaplin',
+    		realisateurDateN: 1889,
+    		realisateurNationalite: 'N',
+    		genre: 'comedie'
+    	},
+
+    	{
+    		id:1,
+    		titre: 'Django Unchained',
+    		annee: 2013,
+    		langue: 'Anglais',
+    		realisateurNom: 'Quentin Tarentino',
+    		realisateurDateN: 1963,
+    		realisateurNationalite: 'N',
+    		genre: 'western'
+    	},
+
+    	{
+    		id:2,
+    		titre: 'Hunger Games',
+    		annee: 2012,
+    		langue: 'Anglais',
+    		realisateurNom: 'Gary Ross',
+    		realisateurDateN: 1956,
+    		realisateurNationalite: 'N',
+    		genre: 'Action'
+    	}
+    ];
+
+var server = http.createServer(function(req, res) {
+  var page = url.parse(req.url).pathname;
+  //console.log(lesFilms[0]);
+  if (page == '/') {
+        res.write('Vous êtes à l\'accueil, que puis-je pour vous ?');
+  res.writeHead(200, {"Content-Type": "text/html"});
+  res.write('Salut tout le monde !');
+  res.end();
+    }
+
+});
+
+
+server.listen(8080);
